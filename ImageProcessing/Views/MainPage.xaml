@@ -19,17 +19,17 @@
                                 <SymbolIcon Symbol="OpenFile" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="btnAllClear" Label="All Clear">
+                        <AppBarButton x:Name="btnAllClear" Label="All Clear" Click="OnClickBtnAllClear">
                             <AppBarButton.Icon>
                                 <SymbolIcon Symbol="Clear" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="btnStart" Label="Start">
+                        <AppBarButton x:Name="btnStart" Label="Start" Click="OnClickBtnStart">
                             <AppBarButton.Icon>
                                 <SymbolIcon Symbol="Go" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="btnStop" Label="Stop">
+                        <AppBarButton x:Name="btnStop" Label="Stop" Click="OnClickBtnStop">
                             <AppBarButton.Icon>
                                 <SymbolIcon Symbol="Stop" />
                             </AppBarButton.Icon>
