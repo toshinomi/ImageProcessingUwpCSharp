@@ -34,7 +34,7 @@
                                 <SymbolIcon Symbol="Stop" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="btnSaveImage" Label="Save Image...">
+                        <AppBarButton x:Name="btnSaveImage" Label="Save Image..." Click="OnClickBtnSaveImage">
                             <AppBarButton.Icon>
                                 <SymbolIcon Symbol="Save" />
                             </AppBarButton.Icon>

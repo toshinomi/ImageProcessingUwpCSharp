@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Graphics.Display;
+using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -55,13 +59,13 @@ namespace ImageProcessing.Views
 
         public async void OnClickBtnFileSelect(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FileOpenPicker();
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.VideosLibrary;
-            picker.FileTypeFilter.Clear();
-            picker.FileTypeFilter.Add(".png");
-            picker.FileTypeFilter.Add(".jpg");
+            var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
+            openPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            openPicker.FileTypeFilter.Clear();
+            openPicker.FileTypeFilter.Add(".png");
+            openPicker.FileTypeFilter.Add(".jpg");
 
-            m_storageFile = await picker.PickSingleFileAsync();
+            m_storageFile = await openPicker.PickSingleFileAsync();
             if (m_storageFile != null)
             {
                 pictureBoxOriginal.Source = null;
@@ -135,6 +139,42 @@ namespace ImageProcessing.Views
             if (m_tokenSource != null)
             {
                 m_tokenSource.Cancel();
+            }
+
+            return;
+        }
+
+        public async void OnClickBtnSaveImage(object sender, RoutedEventArgs e)
+        {
+            var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+            savePicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.Desktop;
+            savePicker.FileTypeChoices.Add("png file", new List<string>() {".png"});
+            savePicker.SuggestedFileName = "Default";
+
+            var storageFile = await savePicker.PickSaveFileAsync();
+            if (storageFile != null)
+            {
+                var size = pictureBoxAfter.RenderSize;
+                var renderTargetBitmap = new RenderTargetBitmap();
+                await renderTargetBitmap.RenderAsync(pictureBoxAfter, (int)size.Width, (int)size.Height);
+
+                var displayInformation = DisplayInformation.GetForCurrentView();
+
+                using (var stream = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
+                {
+                    var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream);
+                    encoder.SetPixelData
+                    (
+                        BitmapPixelFormat.Bgra8,
+                        BitmapAlphaMode.Ignore,
+                        (uint)renderTargetBitmap.PixelWidth,
+                        (uint)renderTargetBitmap.PixelHeight,
+                        displayInformation.LogicalDpi,
+                        displayInformation.LogicalDpi,
+                        (await renderTargetBitmap.GetPixelsAsync()).ToArray()
+                    );
+                    await encoder.FlushAsync();
+                }
             }
 
             return;
