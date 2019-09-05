@@ -120,10 +120,14 @@
     <Compile Include="Lib\ComFunc.cs" />
     <Compile Include="Lib\ComImgProc.cs" />
     <Compile Include="Lib\ComInfo.cs" />
+    <Compile Include="Lib\ComNavigateHistgramData.cs" />
     <Compile Include="Lib\IMemoryBufferByteAccess.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Views\HistgramLiveCharts.xaml.cs">
+      <DependentUpon>HistgramLiveCharts.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\TextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistgramLiveCharts.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,12 +5,16 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Graphics.Display;
 using Windows.Graphics.Imaging;
 using Windows.Storage;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Navigation;
 
 namespace ImageProcessing.Views
 {
@@ -178,6 +182,26 @@ namespace ImageProcessing.Views
             }
 
             return;
+        }
+
+        public async void OnClickBtnShowHistgram(object sender, RoutedEventArgs e)
+        {
+            var navigateHistgramData = new ComNavigateHistgramData();
+            if (m_bitmap != null)
+            {
+                navigateHistgramData.SoftwareBitmapOriginal = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
+            }
+            if (m_grayScale.SoftwareBitmap != null)
+            {
+                navigateHistgramData.SoftwareBitmapAfter = m_grayScale.SoftwareBitmap;
+            }
+            Frame.Navigate(typeof(HistgramLiveCharts), navigateHistgramData);
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            base.OnNavigatedTo(e);
         }
     }
 }

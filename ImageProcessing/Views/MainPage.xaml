@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource PageStyle}"
+    NavigationCacheMode="Enabled"
     mc:Ignorable="d">
     <Grid>
         <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -39,7 +40,7 @@
                                 <SymbolIcon Symbol="Save" />
                             </AppBarButton.Icon>
                         </AppBarButton>
-                        <AppBarButton x:Name="btnShowHistgram" Label="Show Histgram...">
+                        <AppBarButton x:Name="btnShowHistgram" Label="Show Histgram..." Click="OnClickBtnShowHistgram">
                             <AppBarButton.Icon>
                                 <SymbolIcon Symbol="View" />
                             </AppBarButton.Icon>
