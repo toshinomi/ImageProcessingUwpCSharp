@@ -1,10 +1,13 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Uwp;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,6 +26,11 @@ namespace ImageProcessing.Views
     /// </summary>
     public sealed partial class HistgramLiveCharts : Page
     {
+        private int[,] m_nHistgram = new int[(int)ComInfo.PictureType.MAX, ComInfo.RGB_MAX];
+        private SeriesCollection m_seriesCollection = new SeriesCollection();
+        private SoftwareBitmap m_softwareBitmapOriginal;
+        private SoftwareBitmap m_softwareBitmapAfter;
+
         public HistgramLiveCharts()
         {
             this.InitializeComponent();
@@ -31,9 +39,14 @@ namespace ImageProcessing.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ComNavigateHistgramData param = (ComNavigateHistgramData)e.Parameter;
+            m_softwareBitmapOriginal = param.SoftwareBitmapOriginal;
+            m_softwareBitmapAfter = param.SoftwareBitmapAfter;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
             SystemNavigationManager.GetForCurrentView().BackRequested += GoBack;
             base.OnNavigatedTo(e);
+
+            //CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.Original);
+            DrawHistgram();
         }
 
         public void GoBack(object obj, BackRequestedEventArgs e)
@@ -45,6 +58,81 @@ namespace ImageProcessing.Views
                 {
                     e.Handled = true;
                 }
+            }
+        }
+
+        public void DrawHistgram()
+        {
+            InitHistgram();
+
+            CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.Original);
+            CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.After);
+
+            var chartValue = new ChartValues<int>();
+            for (int nType = 0; nType < (int)ComInfo.PictureType.MAX; nType++)
+            {
+                for (int nIdx = 0; nIdx < (m_nHistgram.Length >> 1); nIdx++)
+                {
+                    chartValue.Add(m_nHistgram[nType, nIdx]);
+                }
+            }
+
+            var seriesCollection = new SeriesCollection();
+
+            var lineSeriesChart = new LineSeries()
+            {
+                Values = chartValue,
+                Title = "Histgram"
+            };
+            seriesCollection.Add(lineSeriesChart);
+
+            m_seriesCollection = seriesCollection;
+            LiveChartsGraph.Series = m_seriesCollection;
+        }
+
+        public void CalHistgram(SoftwareBitmap _softwareBitmap, int _nIndex)
+        {
+            int nIdxWidth;
+            int nIdxHeight;
+            unsafe
+            {
+                using (var buffer = _softwareBitmap.LockBuffer(BitmapBufferAccessMode.ReadWrite))
+                using (var reference = buffer.CreateReference())
+                {
+                    if (reference is IMemoryBufferByteAccess)
+                    {
+                        byte* pData;
+                        uint nCapacity;
+                        ((IMemoryBufferByteAccess)reference).GetBuffer(out pData, out nCapacity);
+
+                        var desc = buffer.GetPlaneDescription(0);
+
+                        for (nIdxHeight = 0; nIdxHeight < desc.Height; nIdxHeight++)
+                        {
+                            for (nIdxWidth = 0; nIdxWidth < desc.Width; nIdxWidth++)
+                            {
+                                var nPixel = desc.StartIndex + desc.Stride * nIdxHeight + 4 * nIdxWidth;
+
+                                byte nPixelB = pData[nPixel + (int)ComInfo.Pixel.B];
+                                byte nPixelG = pData[nPixel + (int)ComInfo.Pixel.G];
+                                byte nPixelR = pData[nPixel + (int)ComInfo.Pixel.R];
+
+                                byte nGrayScale = (byte)((nPixelB + nPixelG + nPixelR) / 3);
+
+                                m_nHistgram[_nIndex, nGrayScale] += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void InitHistgram()
+        {
+            for (int nIdx = 0; nIdx < (m_nHistgram.Length >> 1); nIdx++)
+            {
+                m_nHistgram[(int)ComInfo.PictureType.Original, nIdx] = 0;
+                m_nHistgram[(int)ComInfo.PictureType.After, nIdx] = 0;
             }
         }
     }

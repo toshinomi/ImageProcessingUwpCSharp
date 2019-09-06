@@ -48,14 +48,14 @@
                     </StackPanel>
                 </Grid>
             </AppBar>
-            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="200,170,200,420">
+            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="200,86,200,0" Height="404" VerticalAlignment="Top">
                 <Image x:Name="pictureBoxOriginal" Margin="20,20,20,20"/>
             </Border>
-            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="200,535,200,50">
+            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="200,600,200,76">
                 <Image x:Name="pictureBoxAfter" Margin="20,20,20,20"/>
             </Border>
         </Grid>
-        <TextBlock x:Name="labelOriginalImage"  HorizontalAlignment="Left" Margin="200,141,0,0" Text="Original Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
-        <TextBlock x:Name="labelAfterImage"  HorizontalAlignment="Left" Margin="200,505,0,0" Text="After Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
+        <TextBlock x:Name="labelOriginalImage"  HorizontalAlignment="Left" Margin="200,57,0,0" Text="Original Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
+        <TextBlock x:Name="labelAfterImage"  HorizontalAlignment="Left" Margin="200,572,0,0" Text="After Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
     </Grid>
 </Page>

@@ -14,4 +14,30 @@ public class ComInfo
         A,
         MAX,
     };
+
+    public enum ImgType
+    {
+        EdgeDetection = 0,
+        GrayScale,
+        Binarization,
+        GrayScale2Diff,
+        ColorReversal,
+        MAX,
+    };
+
+    public enum ImgDataType
+    {
+        Jpg = 0,
+        Png,
+        MAX,
+    };
+
+    public enum PictureType
+    {
+        Original = 0,
+        After,
+        MAX,
+    };
+
+    public const short RGB_MAX = 256;
 }
