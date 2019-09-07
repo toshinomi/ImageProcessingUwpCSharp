@@ -24,6 +24,7 @@ class ColorReversal : ComImgProc
     public override bool GoImgProc(CancellationToken _token)
     {
         bool bRst = true;
+        base.m_nStatus = (int)ComInfo.ImageProcStatus.Implemented;
 
         int nIdxWidth;
         int nIdxHeight;
@@ -45,6 +46,7 @@ class ColorReversal : ComImgProc
                         if (_token.IsCancellationRequested)
                         {
                             bRst = false;
+                            base.m_nStatus = (int)ComInfo.ImageProcStatus.NotImplemented;
                             break;
                         }
 
@@ -53,6 +55,7 @@ class ColorReversal : ComImgProc
                             if (_token.IsCancellationRequested)
                             {
                                 bRst = false;
+                                base.m_nStatus = (int)ComInfo.ImageProcStatus.NotImplemented;
                                 break;
                             }
 

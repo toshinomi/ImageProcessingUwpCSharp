@@ -94,6 +94,7 @@ namespace ImageProcessing.Views
 
             //m_grayScale.SoftwareBitmap = null;
             m_colorReversal.SoftwareBitmap = null;
+            m_colorReversal.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
             m_bitmap = null;
 
             return;
@@ -202,7 +203,8 @@ namespace ImageProcessing.Views
                 navigateHistgramData.SoftwareBitmapOriginal = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
             }
             //if (m_grayScale.SoftwareBitmap != null)
-            if (m_colorReversal.SoftwareBitmap != null)
+            //if (m_colorReversal.SoftwareBitmap != null)
+            if (m_colorReversal.Status == (int)ComInfo.ImageProcStatus.Implemented)
             {
                 //navigateHistgramData.SoftwareBitmapAfter = m_grayScale.SoftwareBitmap;
                 navigateHistgramData.SoftwareBitmapAfter = m_colorReversal.SoftwareBitmap;

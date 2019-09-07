@@ -9,14 +9,18 @@ using Windows.Graphics.Imaging;
 abstract public class ComImgProc
 {
     protected SoftwareBitmap m_softwareBitmap;
+    protected int m_nStatus;
 
     public ComImgProc(SoftwareBitmap _softwareBitmap)
     {
         m_softwareBitmap = _softwareBitmap;
+        m_nStatus = (int)ComInfo.ImageProcStatus.NotImplemented;
     }
 
     public ComImgProc()
     {
+        m_softwareBitmap = null;
+        m_nStatus = (int)ComInfo.ImageProcStatus.NotImplemented;
     }
 
     ~ComImgProc()
@@ -27,6 +31,12 @@ abstract public class ComImgProc
     {
         set { m_softwareBitmap = value; }
         get { return m_softwareBitmap; }
+    }
+
+    public int Status
+    {
+        set { m_nStatus = value; }
+        get { return m_nStatus; }
     }
 
     abstract public bool GoImgProc(CancellationToken _token);

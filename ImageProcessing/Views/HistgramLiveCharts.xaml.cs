@@ -64,8 +64,14 @@ namespace ImageProcessing.Views
         {
             InitHistgram();
 
-            CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.Original);
-            CalHistgram(m_softwareBitmapAfter, (int)ComInfo.PictureType.After);
+            if (m_softwareBitmapOriginal != null)
+            {
+                CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.Original);
+            }
+            if (m_softwareBitmapAfter != null)
+            {
+                CalHistgram(m_softwareBitmapAfter, (int)ComInfo.PictureType.After);
+            }
 
             var chartValueOriginal = new ChartValues<int>();
             var chartValueAfter = new ChartValues<int>();

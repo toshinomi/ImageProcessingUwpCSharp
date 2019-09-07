@@ -39,5 +39,12 @@ public class ComInfo
         MAX,
     };
 
+    public enum ImageProcStatus
+    {
+        NotImplemented = 0,
+        Implemented,
+        MAX,
+    }
+
     public const short RGB_MAX = 256;
 }
