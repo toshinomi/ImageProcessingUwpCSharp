@@ -45,7 +45,6 @@ namespace ImageProcessing.Views
             SystemNavigationManager.GetForCurrentView().BackRequested += GoBack;
             base.OnNavigatedTo(e);
 
-            //CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.Original);
             DrawHistgram();
         }
 
@@ -66,25 +65,39 @@ namespace ImageProcessing.Views
             InitHistgram();
 
             CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.Original);
-            CalHistgram(m_softwareBitmapOriginal, (int)ComInfo.PictureType.After);
+            CalHistgram(m_softwareBitmapAfter, (int)ComInfo.PictureType.After);
 
-            var chartValue = new ChartValues<int>();
+            var chartValueOriginal = new ChartValues<int>();
+            var chartValueAfter = new ChartValues<int>();
             for (int nType = 0; nType < (int)ComInfo.PictureType.MAX; nType++)
             {
                 for (int nIdx = 0; nIdx < (m_nHistgram.Length >> 1); nIdx++)
                 {
-                    chartValue.Add(m_nHistgram[nType, nIdx]);
+                    if (nType == 0)
+                    {
+                        chartValueOriginal.Add(m_nHistgram[nType, nIdx]);
+                    }
+                    else if (nType == 1)
+                    {
+                        chartValueAfter.Add(m_nHistgram[nType, nIdx]);
+                    }
                 }
             }
 
             var seriesCollection = new SeriesCollection();
 
-            var lineSeriesChart = new LineSeries()
+            var lineSeriesChartOriginal = new LineSeries()
             {
-                Values = chartValue,
-                Title = "Histgram"
+                Values = chartValueOriginal,
+                Title = "Histgram Original"
             };
-            seriesCollection.Add(lineSeriesChart);
+            var lineSeriesChartAfter = new LineSeries()
+            {
+                Values = chartValueAfter,
+                Title = "Histgram After"
+            };
+            seriesCollection.Add(lineSeriesChartOriginal);
+            seriesCollection.Add(lineSeriesChartAfter);
 
             m_seriesCollection = seriesCollection;
             LiveChartsGraph.Series = m_seriesCollection;
