@@ -25,6 +25,7 @@ namespace ImageProcessing.Views
         private StorageFile m_storageFile;
         private GrayScale m_grayScale;
         private ColorReversal m_colorReversal;
+        private Binarization m_binaraization;
         private CancellationTokenSource m_tokenSource;
 
         public MainPage()
@@ -45,6 +46,7 @@ namespace ImageProcessing.Views
             m_storageFile = null;
             m_grayScale = new GrayScale();
             m_colorReversal = new ColorReversal();
+            m_binaraization = new Binarization();
             m_tokenSource = new CancellationTokenSource();
         }
 
@@ -93,8 +95,10 @@ namespace ImageProcessing.Views
             pictureBoxAfter.Source = null;
 
             //m_grayScale.SoftwareBitmap = null;
-            m_colorReversal.SoftwareBitmap = null;
-            m_colorReversal.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
+            //m_colorReversal.SoftwareBitmap = null;
+            //m_colorReversal.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
+            m_binaraization.SoftwareBitmap = null;
+            m_binaraization.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
             m_bitmap = null;
 
             return;
@@ -111,7 +115,8 @@ namespace ImageProcessing.Views
                 if (bTaskResult)
                 {
                     //pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_grayScale.SoftwareBitmap);
-                    pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_colorReversal.SoftwareBitmap);
+                    //pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_colorReversal.SoftwareBitmap);
+                    pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_binaraization.SoftwareBitmap);
                 }
             }
             return;
@@ -130,7 +135,8 @@ namespace ImageProcessing.Views
 
                 var softwareBitmap = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
                 //m_grayScale.SoftwareBitmap = softwareBitmap;
-                m_colorReversal.SoftwareBitmap = softwareBitmap;
+                //m_colorReversal.SoftwareBitmap = softwareBitmap;
+                m_binaraization.SoftwareBitmap = softwareBitmap;
             }
             catch (Exception)
             {
@@ -145,7 +151,8 @@ namespace ImageProcessing.Views
         {
             CancellationToken token = m_tokenSource.Token;
             //bool bRst = await Task.Run(() => m_grayScale.GoImgProc(token));
-            bool bRst = await Task.Run(() => m_colorReversal.GoImgProc(token));
+            //bool bRst = await Task.Run(() => m_colorReversal.GoImgProc(token));
+            bool bRst = await Task.Run(() => m_binaraization.GoImgProc(token));
             return bRst;
         }
 
@@ -204,10 +211,12 @@ namespace ImageProcessing.Views
             }
             //if (m_grayScale.SoftwareBitmap != null)
             //if (m_colorReversal.SoftwareBitmap != null)
-            if (m_colorReversal.Status == (int)ComInfo.ImageProcStatus.Implemented)
+            //if (m_colorReversal.Status == (int)ComInfo.ImageProcStatus.Implemented)
+            if (m_binaraization.Status == (int)ComInfo.ImageProcStatus.Implemented)
             {
                 //navigateHistgramData.SoftwareBitmapAfter = m_grayScale.SoftwareBitmap;
-                navigateHistgramData.SoftwareBitmapAfter = m_colorReversal.SoftwareBitmap;
+                //navigateHistgramData.SoftwareBitmapAfter = m_colorReversal.SoftwareBitmap;
+                navigateHistgramData.SoftwareBitmapAfter = m_binaraization.SoftwareBitmap;
             }
             if (m_bitmap != null)
             {

@@ -119,6 +119,7 @@
     <Compile Include="Behaviors\NavigationViewHeaderBehavior.cs" />
     <Compile Include="Behaviors\NavigationViewHeaderMode.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
+    <Compile Include="ImgProc\Binarization.cs" />
     <Compile Include="ImgProc\ColorReversal.cs" />
     <Compile Include="ImgProc\GrayScale.cs" />
     <Compile Include="Lib\ComFunc.cs" />
