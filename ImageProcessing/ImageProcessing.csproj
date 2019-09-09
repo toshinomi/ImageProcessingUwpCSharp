@@ -122,6 +122,7 @@
     <Compile Include="ImgProc\Binarization.cs" />
     <Compile Include="ImgProc\ColorReversal.cs" />
     <Compile Include="ImgProc\GrayScale.cs" />
+    <Compile Include="ImgProc\GrayScale2Diff.cs" />
     <Compile Include="Lib\ComFunc.cs" />
     <Compile Include="Lib\ComImgProc.cs" />
     <Compile Include="Lib\ComInfo.cs" />
