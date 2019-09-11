@@ -69,15 +69,12 @@ class GrayScale2Diff : ComImgProc
 
                             var nPixel = desc.StartIndex + desc.Stride * nIdxHeight + 4 * nIdxWidth;
 
-
-
                             long lCalB = 0;
                             long lCalG = 0;
                             long lCalR = 0;
                             double dCalAve = 0.0;
                             int nIdxWidthMask;
                             int nIdxHightMask;
-
 
                             for (nIdxHightMask = 0; nIdxHightMask < nMasksize; nIdxHightMask++)
                             {
@@ -88,32 +85,22 @@ class GrayScale2Diff : ComImgProc
                                         nIdxHeight + nIdxHightMask > 0 &&
                                         nIdxHeight + nIdxHightMask < desc.Height)
                                     {
-
                                         var nPixel2 = desc.StartIndex + desc.Stride * (nIdxHeight + nIdxHightMask) + 4 * (nIdxWidth + nIdxWidthMask);
 
-                                       // byte* pPixel2 = (byte*)m_wBitmap.BackBuffer + (nIdxHeight + nIdxHightMask) * m_wBitmap.BackBufferStride + (nIdxWidth + nIdxWidthMask) * 4;
-
-                                        lCalB = pPixel2[(int)ComInfo.Pixel.B] * nMask[nIdxWidthMask, nIdxHightMask];
-                                        lCalG = pPixel2[(int)ComInfo.Pixel.G] * nMask[nIdxWidthMask, nIdxHightMask];
-                                        lCalR = pPixel2[(int)ComInfo.Pixel.R] * nMask[nIdxWidthMask, nIdxHightMask];
+                                        lCalB = pData[nPixel2 + (int)ComInfo.Pixel.B];
+                                        lCalG = pData[nPixel2 + (int)ComInfo.Pixel.G];
+                                        lCalR = pData[nPixel2 + (int)ComInfo.Pixel.R];
 
                                         double dcalGray = (lCalB + lCalG + lCalR) / 3;
                                         dCalAve = (dCalAve + dcalGray) / 2;
                                     }
                                 }
                             }
+                            byte nGrayScale = ComFunc.DoubleToByte(dCalAve);
 
-
-                            byte nPixelB = pData[nPixel + (int)ComInfo.Pixel.B];
-                            byte nPixelG = pData[nPixel + (int)ComInfo.Pixel.G];
-                            byte nPixelR = pData[nPixel + (int)ComInfo.Pixel.R];
-
-                            byte nGrayScale = (byte)((nPixelB + nPixelG + nPixelR) / 3);
-
-                            byte nBinarization = nGrayScale >= 125 ? (byte)255 : (byte)0;
-                            pData[nPixel + (int)ComInfo.Pixel.B] = nBinarization;
-                            pData[nPixel + (int)ComInfo.Pixel.G] = nBinarization;
-                            pData[nPixel + (int)ComInfo.Pixel.R] = nBinarization;
+                            pData[nPixel + (int)ComInfo.Pixel.B] = nGrayScale;
+                            pData[nPixel + (int)ComInfo.Pixel.G] = nGrayScale;
+                            pData[nPixel + (int)ComInfo.Pixel.R] = nGrayScale;
                         }
                     }
                 }
