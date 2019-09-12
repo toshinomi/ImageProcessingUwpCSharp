@@ -87,9 +87,9 @@ class GrayScale2Diff : ComImgProc
                                     {
                                         var nPixel2 = desc.StartIndex + desc.Stride * (nIdxHeight + nIdxHightMask) + 4 * (nIdxWidth + nIdxWidthMask);
 
-                                        lCalB = pData[nPixel2 + (int)ComInfo.Pixel.B];
-                                        lCalG = pData[nPixel2 + (int)ComInfo.Pixel.G];
-                                        lCalR = pData[nPixel2 + (int)ComInfo.Pixel.R];
+                                        lCalB = pData[nPixel2 + (int)ComInfo.Pixel.B] * nMask[nIdxWidthMask, nIdxHightMask];
+                                        lCalG = pData[nPixel2 + (int)ComInfo.Pixel.G] * nMask[nIdxWidthMask, nIdxHightMask];
+                                        lCalR = pData[nPixel2 + (int)ComInfo.Pixel.R] * nMask[nIdxWidthMask, nIdxHightMask];
 
                                         double dcalGray = (lCalB + lCalG + lCalR) / 3;
                                         dCalAve = (dCalAve + dcalGray) / 2;
