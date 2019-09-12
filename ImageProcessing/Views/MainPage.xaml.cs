@@ -27,6 +27,7 @@ namespace ImageProcessing.Views
         private ColorReversal m_colorReversal;
         private Binarization m_binaraization;
         private GrayScale2Diff m_grayScale2Diff;
+        private EdgeDetection m_edgeDetection;
         private CancellationTokenSource m_tokenSource;
 
         public MainPage()
@@ -49,6 +50,7 @@ namespace ImageProcessing.Views
             m_colorReversal = new ColorReversal();
             m_binaraization = new Binarization();
             m_grayScale2Diff = new GrayScale2Diff();
+            m_edgeDetection = new EdgeDetection();
             m_tokenSource = new CancellationTokenSource();
         }
 
@@ -102,8 +104,10 @@ namespace ImageProcessing.Views
             //m_colorReversal.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
             //m_binaraization.SoftwareBitmap = null;
             //m_binaraization.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
-            m_grayScale2Diff.SoftwareBitmap = null;
-            m_grayScale2Diff.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
+            //m_grayScale2Diff.SoftwareBitmap = null;
+            //m_grayScale2Diff.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
+            m_edgeDetection.SoftwareBitmap = null;
+            m_edgeDetection.Status = (int)ComInfo.ImageProcStatus.NotImplemented;
             m_bitmap = null;
 
             return;
@@ -122,7 +126,8 @@ namespace ImageProcessing.Views
                     //pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_grayScale.SoftwareBitmap);
                     //pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_colorReversal.SoftwareBitmap);
                     //pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_binaraization.SoftwareBitmap);
-                    pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_grayScale2Diff.SoftwareBitmap);
+                    //pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_grayScale2Diff.SoftwareBitmap);
+                    pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(m_edgeDetection.SoftwareBitmap);
                 }
             }
             return;
@@ -143,7 +148,8 @@ namespace ImageProcessing.Views
                 //m_grayScale.SoftwareBitmap = softwareBitmap;
                 //m_colorReversal.SoftwareBitmap = softwareBitmap;
                 //m_binaraization.SoftwareBitmap = softwareBitmap;
-                m_grayScale2Diff.SoftwareBitmap = softwareBitmap;
+                //m_grayScale2Diff.SoftwareBitmap = softwareBitmap;
+                m_edgeDetection.SoftwareBitmap = softwareBitmap;
             }
             catch (Exception)
             {
@@ -160,7 +166,8 @@ namespace ImageProcessing.Views
             //bool bRst = await Task.Run(() => m_grayScale.GoImgProc(token));
             //bool bRst = await Task.Run(() => m_colorReversal.GoImgProc(token));
             //bool bRst = await Task.Run(() => m_binaraization.GoImgProc(token));
-            bool bRst = await Task.Run(() => m_grayScale2Diff.GoImgProc(token));
+            //bool bRst = await Task.Run(() => m_grayScale2Diff.GoImgProc(token));
+            bool bRst = await Task.Run(() => m_edgeDetection.GoImgProc(token));
             return bRst;
         }
 
@@ -221,12 +228,14 @@ namespace ImageProcessing.Views
             //if (m_colorReversal.SoftwareBitmap != null)
             //if (m_colorReversal.Status == (int)ComInfo.ImageProcStatus.Implemented)
             //if (m_binaraization.Status == (int)ComInfo.ImageProcStatus.Implemented)
-            if (m_grayScale2Diff.Status == (int)ComInfo.ImageProcStatus.Implemented)
+            //if (m_grayScale2Diff.Status == (int)ComInfo.ImageProcStatus.Implemented)
+            if (m_edgeDetection.Status == (int)ComInfo.ImageProcStatus.Implemented)
             {
                 //navigateHistgramData.SoftwareBitmapAfter = m_grayScale.SoftwareBitmap;
                 //navigateHistgramData.SoftwareBitmapAfter = m_colorReversal.SoftwareBitmap;
                 //navigateHistgramData.SoftwareBitmapAfter = m_binaraization.SoftwareBitmap;
-                navigateHistgramData.SoftwareBitmapAfter = m_grayScale2Diff.SoftwareBitmap;
+                //navigateHistgramData.SoftwareBitmapAfter = m_grayScale2Diff.SoftwareBitmap;
+                navigateHistgramData.SoftwareBitmapAfter = m_edgeDetection.SoftwareBitmap;
             }
             if (m_bitmap != null)
             {

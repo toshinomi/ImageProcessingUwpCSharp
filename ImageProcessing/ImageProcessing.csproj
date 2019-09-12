@@ -121,6 +121,7 @@
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="ImgProc\Binarization.cs" />
     <Compile Include="ImgProc\ColorReversal.cs" />
+    <Compile Include="ImgProc\EdgeDetection.cs" />
     <Compile Include="ImgProc\GrayScale.cs" />
     <Compile Include="ImgProc\GrayScale2Diff.cs" />
     <Compile Include="Lib\ComFunc.cs" />
