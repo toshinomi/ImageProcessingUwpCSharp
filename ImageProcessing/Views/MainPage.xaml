@@ -8,54 +8,54 @@
     NavigationCacheMode="Enabled"
     mc:Ignorable="d">
     <Grid>
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <AppBar Background="#33ff00ff" >
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal">
-                        <AppBarButton x:Name="btnFileSelect" Label="File Select..." Click="OnClickBtnFileSelect">
-                            <AppBarButton.Icon>
-                                <SymbolIcon Symbol="OpenFile" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btnAllClear" Label="All Clear" Click="OnClickBtnAllClear">
-                            <AppBarButton.Icon>
-                                <SymbolIcon Symbol="Clear" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btnStart" Label="Start" Click="OnClickBtnStart">
-                            <AppBarButton.Icon>
-                                <SymbolIcon Symbol="Go" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btnStop" Label="Stop" Click="OnClickBtnStop">
-                            <AppBarButton.Icon>
-                                <SymbolIcon Symbol="Stop" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btnSaveImage" Label="Save Image..." Click="OnClickBtnSaveImage">
-                            <AppBarButton.Icon>
-                                <SymbolIcon Symbol="Save" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                        <AppBarButton x:Name="btnShowHistgram" Label="Show Histgram..." Click="OnClickBtnShowHistgram">
-                            <AppBarButton.Icon>
-                                <SymbolIcon Symbol="View" />
-                            </AppBarButton.Icon>
-                        </AppBarButton>
-                    </StackPanel>
-                </Grid>
-            </AppBar>
-            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="200,86,200,0" Height="404" VerticalAlignment="Top">
-                <Image x:Name="pictureBoxOriginal" Margin="20,20,20,20"/>
-            </Border>
-            <Border BorderBrush="DarkGray" BorderThickness="1" Margin="200,600,200,76">
-                <Image x:Name="pictureBoxAfter" Margin="20,20,20,20"/>
-            </Border>
+        <AppBar Background="#33ff00ff" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton x:Name="btnFileSelect" Label="File Select..." Click="OnClickBtnFileSelect">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="OpenFile" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btnAllClear" Label="All Clear" Click="OnClickBtnAllClear">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Clear" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btnStart" Label="Start" Click="OnClickBtnStart">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Go" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btnStop" Label="Stop" Click="OnClickBtnStop">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Stop" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btnSaveImage" Label="Save Image..." Click="OnClickBtnSaveImage">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Save" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <AppBarButton x:Name="btnShowHistgram" Label="Show Histgram..." Click="OnClickBtnShowHistgram">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="View" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+        <Grid BorderBrush="DarkGray" BorderThickness="1" Margin="200,136,200,540">
+            <Image x:Name="pictureBoxOriginal" Margin="20,20,20,20"/>
         </Grid>
-        <TextBlock x:Name="labelOriginalImage"  HorizontalAlignment="Left" Margin="200,57,0,0" Text="Original Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
+
+        <Grid BorderBrush="DarkGray" BorderThickness="1" Margin="200,600,200,76">
+            <Image x:Name="pictureBoxAfter" Margin="20,20,20,20"/>
+        </Grid>
+        <TextBlock x:Name="labelOriginalImage"  HorizontalAlignment="Left" Margin="200,107,0,0" Text="Original Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
         <TextBlock x:Name="labelAfterImage"  HorizontalAlignment="Left" Margin="200,572,0,0" Text="After Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
     </Grid>
 </Page>
