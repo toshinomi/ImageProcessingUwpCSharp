@@ -125,6 +125,7 @@
     <Compile Include="ImgProc\GrayScale.cs" />
     <Compile Include="ImgProc\GrayScale2Diff.cs" />
     <Compile Include="Lib\ComFunc.cs" />
+    <Compile Include="Lib\ComImageProcessingType.cs" />
     <Compile Include="Lib\ComImgProc.cs" />
     <Compile Include="Lib\ComInfo.cs" />
     <Compile Include="Lib\ComNavigateHistgramData.cs" />
@@ -132,11 +133,14 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Views\HistgramLiveCharts.xaml.cs">
-      <DependentUpon>HistgramLiveCharts.xaml</DependentUpon>
+    <Compile Include="Views\HistgramLiveChartsPage.xaml.cs">
+      <DependentUpon>HistgramLiveChartsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingImageProcessingPage.xaml.cs">
+      <DependentUpon>SettingImageProcessingPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellPage.xaml.cs">
       <DependentUpon>ShellPage.xaml</DependentUpon>
@@ -169,13 +173,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HistgramLiveCharts.xaml">
+    <Page Include="Views\HistgramLiveChartsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SettingImageProcessingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +211,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="ImageProcessing_TemporaryKey.pfx" />
+    <PRIResource Include="Properties\ImageProcessingType.resw" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

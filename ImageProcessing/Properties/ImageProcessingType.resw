@@ -117,20 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AppDisplayName" xml:space="preserve">
-    <value>ImageProcessing</value>
-    <comment>Application display name</comment>
+  <data name="ImgTypeBinarizationId" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="AppDescription" xml:space="preserve">
-    <value>ImageProcessing</value>
-    <comment>Application description</comment>
+  <data name="ImgTypeBinarizationName" xml:space="preserve">
+    <value>Binarization</value>
   </data>
-  <data name="Shell_Main.Content" xml:space="preserve">
-    <value>Main</value>
-    <comment>Navigation view item name for Main</comment>
+  <data name="ImgTypeColorReversalId" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="Shell_SettingImageProcessing.Content" xml:space="preserve">
-    <value>Setting Image Processing</value>
-    <comment>Navigation view item name for Setting Image Processing</comment>
+  <data name="ImgTypeColorReversalName" xml:space="preserve">
+    <value>ColorReversal</value>
+  </data>
+  <data name="ImgTypeEdgeId" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ImgTypeEdgeName" xml:space="preserve">
+    <value>EdgeDetection</value>
+  </data>
+  <data name="ImgTypeGrayScale2DiffId" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ImgTypeGrayScale2DiffName" xml:space="preserve">
+    <value>GrayScale 2Diff</value>
+  </data>
+  <data name="ImgTypeGrayScaleId" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ImgTypeGrayScaleName" xml:space="preserve">
+    <value>GrayScale</value>
+  </data>
+  <data name="ImgTypeSelectName" xml:space="preserve">
+    <value>EdgeDetection</value>
   </data>
 </root>

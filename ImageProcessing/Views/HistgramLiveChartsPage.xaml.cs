@@ -24,16 +24,20 @@ namespace ImageProcessing.Views
     /// <summary>
     /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
     /// </summary>
-    public sealed partial class HistgramLiveCharts : Page
+    public sealed partial class HistgramLiveChartsPage : Page
     {
         private int[,] m_nHistgram = new int[(int)ComInfo.PictureType.MAX, ComInfo.RGB_MAX];
         private SeriesCollection m_seriesCollection = new SeriesCollection();
         private SoftwareBitmap m_softwareBitmapOriginal;
         private SoftwareBitmap m_softwareBitmapAfter;
 
-        public HistgramLiveCharts()
+        public HistgramLiveChartsPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        ~HistgramLiveChartsPage()
+        {
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

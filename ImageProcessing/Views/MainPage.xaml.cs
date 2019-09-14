@@ -54,6 +54,25 @@ namespace ImageProcessing.Views
             m_tokenSource = new CancellationTokenSource();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
+            SystemNavigationManager.GetForCurrentView().BackRequested += GoBack;
+            base.OnNavigatedTo(e);
+        }
+
+        public void GoBack(object obj, BackRequestedEventArgs e)
+        {
+            if (Frame.CanGoBack)
+            {
+                Frame.GoBack();
+                if (e != null)
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void Set<T>(ref T storage, T value, [CallerMemberName]string propertyName = null)
@@ -239,14 +258,8 @@ namespace ImageProcessing.Views
             }
             if (m_bitmap != null)
             {
-                Frame.Navigate(typeof(HistgramLiveCharts), navigateHistgramData);
+                Frame.Navigate(typeof(HistgramLiveChartsPage), navigateHistgramData);
             }
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
-            base.OnNavigatedTo(e);
         }
     }
 }
