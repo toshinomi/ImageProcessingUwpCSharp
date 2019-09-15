@@ -126,7 +126,7 @@ namespace ImageProcessing.Views
                 bool bTaskResult = await TaskWorkImageProcessing();
                 if (bTaskResult)
                 {
-                    string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME);
+                    string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
                     pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(SelectGetBitmap(strCurImgName));
                 }
             }
@@ -145,7 +145,7 @@ namespace ImageProcessing.Views
                 pictureBoxOriginal.Source = m_bitmap;
 
                 m_softwareBitmap = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
-                string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME);
+                string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
                 SelectLoadImage(strCurImgName);
             }
             catch (Exception)
@@ -164,7 +164,7 @@ namespace ImageProcessing.Views
             ComImgInfo imgInfo = new ComImgInfo();
             ComBinarizationInfo binarizationInfo = new ComBinarizationInfo();
             binarizationInfo.Thresh = 125;
-            imgInfo.CurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME);
+            imgInfo.CurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
             imgInfo.BinarizationInfo = binarizationInfo;
             bool bRst = await Task.Run(() => SelectGoImgProc(imgInfo, token));
             return bRst;
@@ -223,7 +223,7 @@ namespace ImageProcessing.Views
             {
                 navigateHistgramData.SoftwareBitmapOriginal = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
             }
-            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME);
+            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
             if (SelectGetStatus(strCurImgName) == (int)ComInfo.ImageProcStatus.Implemented)
             {
                 navigateHistgramData.SoftwareBitmapAfter = SelectGetBitmap(strCurImgName);

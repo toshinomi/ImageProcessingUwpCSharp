@@ -56,22 +56,22 @@ namespace ImageProcessing.Views
 
         public void LoadParam()
         {
-            var settings = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView("ImageProcessingType");
+            var settings = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView(ComInfo.RESOURCE_IMG_PROC_TYPE);
             if (settings != null)
             {
                 List<ComImageProcessingType> items = new List<ComImageProcessingType>();
-                items.Add(new ComImageProcessingType(int.Parse(settings.GetString("ImgTypeEdgeId")), settings.GetString("ImgTypeEdgeName")));
-                items.Add(new ComImageProcessingType(int.Parse(settings.GetString("ImgTypeGrayScaleId")), settings.GetString("ImgTypeGrayScaleName")));
-                items.Add(new ComImageProcessingType(int.Parse(settings.GetString("ImgTypeBinarizationId")), settings.GetString("ImgTypeBinarizationName")));
-                items.Add(new ComImageProcessingType(int.Parse(settings.GetString("ImgTypeGrayScale2DiffId")), settings.GetString("ImgTypeGrayScale2DiffName")));
-                items.Add(new ComImageProcessingType(int.Parse(settings.GetString("ImgTypeColorReversalId")), settings.GetString("ImgTypeColorReversalName")));
-                cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeEdgeName"));
-                cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeGrayScaleName"));
-                cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeBinarizationName"));
-                cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeGrayScale2DiffName"));
-                cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeColorReversalName"));
+                items.Add(new ComImageProcessingType(int.Parse(settings.GetString(ComInfo.IMG_TYPE_EDGE_ID)), settings.GetString(ComInfo.IMG_TYPE_EDGE_NAME)));
+                items.Add(new ComImageProcessingType(int.Parse(settings.GetString(ComInfo.IMG_TYPE_GRAY_SCALE_ID)), settings.GetString(ComInfo.IMG_TYPE_GRAY_SCALE_NAME)));
+                items.Add(new ComImageProcessingType(int.Parse(settings.GetString(ComInfo.IMG_TYPE_BINARIZATION_ID)), settings.GetString(ComInfo.IMG_TYPE_BINARIZATION_NAME)));
+                items.Add(new ComImageProcessingType(int.Parse(settings.GetString(ComInfo.IMG_TYPE_GRAY_SCALE_2DIFF_ID)), settings.GetString(ComInfo.IMG_TYPE_GRAY_SCALE_2DIFF_NAME)));
+                items.Add(new ComImageProcessingType(int.Parse(settings.GetString(ComInfo.IMG_TYPE_COLOR_REVERSAL_ID)), settings.GetString(ComInfo.IMG_TYPE_COLOR_REVERSAL_NAME)));
+                cmbBoxImageProcessingType.Items.Add(settings.GetString(ComInfo.IMG_TYPE_EDGE_NAME));
+                cmbBoxImageProcessingType.Items.Add(settings.GetString(ComInfo.IMG_TYPE_GRAY_SCALE_NAME));
+                cmbBoxImageProcessingType.Items.Add(settings.GetString(ComInfo.IMG_TYPE_BINARIZATION_NAME));
+                cmbBoxImageProcessingType.Items.Add(settings.GetString(ComInfo.IMG_TYPE_GRAY_SCALE_2DIFF_NAME));
+                cmbBoxImageProcessingType.Items.Add(settings.GetString(ComInfo.IMG_TYPE_COLOR_REVERSAL_NAME));
 
-                string strImgTypeSelectName = ComFunc.GetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME);
+                string strImgTypeSelectName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
                 if (!string.IsNullOrWhiteSpace(strImgTypeSelectName))
                 {
                     cmbBoxImageProcessingType.SelectedIndex = (int)items.Find(x => x.Name == strImgTypeSelectName)?.Id - 1;
@@ -88,7 +88,7 @@ namespace ImageProcessing.Views
         public void SaveParam()
         {
             string strProcTypeName = (string)cmbBoxImageProcessingType.SelectedItem;
-            ComFunc.SetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME, strProcTypeName);
+            ComFunc.SetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME, strProcTypeName);
 
             return;
         }
