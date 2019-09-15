@@ -163,7 +163,7 @@ namespace ImageProcessing.Views
             CancellationToken token = m_tokenSource.Token;
             ComImgInfo imgInfo = new ComImgInfo();
             ComBinarizationInfo binarizationInfo = new ComBinarizationInfo();
-            binarizationInfo.Thresh = 125;
+            binarizationInfo.Thresh = (byte)sliderThresh.Value;
             imgInfo.CurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
             imgInfo.BinarizationInfo = binarizationInfo;
             bool bRst = await Task.Run(() => SelectGoImgProc(imgInfo, token));
@@ -289,6 +289,7 @@ namespace ImageProcessing.Views
                     break;
                 case ComInfo.IMG_NAME_BINARIZATION:
                     var binarization = (Binarization)m_imgProc;
+                    binarization.Thresh = _comImgInfo.BinarizationInfo.Thresh;
                     bRst = binarization.GoImgProc(_token);
                     break;
                 case ComInfo.IMG_NAME_GRAY_SCALE_2DIFF:
@@ -371,6 +372,33 @@ namespace ImageProcessing.Views
             }
 
             return bRst;
+        }
+
+        public void OnSliderPreviewKeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
+        {
+            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+            if (strCurImgName != ComInfo.IMG_NAME_BINARIZATION)
+            {
+                return;
+            }
+            if (pictureBoxAfter.Source != null)
+            {
+                OnClickBtnStart(sender, e);
+            }
+        }
+
+
+        private void OnSliderKeyUp(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
+        {
+            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+            if (strCurImgName != ComInfo.IMG_NAME_BINARIZATION)
+            {
+                return;
+            }
+            if (pictureBoxAfter.Source != null)
+            {
+                OnClickBtnStart(sender, e);
+            }
         }
     }
 }

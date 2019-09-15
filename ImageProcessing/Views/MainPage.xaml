@@ -55,7 +55,12 @@
         <Grid BorderBrush="DarkGray" BorderThickness="1" Margin="200,600,200,76">
             <Image x:Name="pictureBoxAfter" Margin="20,20,20,20"/>
         </Grid>
-        <TextBlock x:Name="labelOriginalImage"  HorizontalAlignment="Left" Margin="200,107,0,0" Text="Original Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
-        <TextBlock x:Name="labelAfterImage"  HorizontalAlignment="Left" Margin="200,572,0,0" Text="After Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="292"/>
+        <TextBlock x:Name="labelOriginalImage"  HorizontalAlignment="Left" Margin="200,107,0,0" Text="Original Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="144"/>
+        <TextBlock x:Name="labelAfterImage"  HorizontalAlignment="Left" Margin="200,572,0,0" Text="After Image" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="144"/>
+        <Canvas x:Name="canvasBinarization" Height="39" Canvas.Left="650" Margin="325,559,1100,482">
+            <Slider  x:Name="sliderThresh" Canvas.Left="190" Width="200" Minimum="0" Maximum="255" Canvas.Top="4" PointerCaptureLost="OnSliderKeyUp" PreviewKeyUp="OnSliderPreviewKeyUp"/>
+            <TextBlock x:Name="labelThresh" Canvas.Left="45" Canvas.Top="10" Text="Threshold( 0 - 255 )" TextWrapping="Wrap" Width="200"/>
+            <TextBlock x:Name="labelValue" Canvas.Left="405" Text="{Binding Value, ElementName=sliderThresh}" TextWrapping="Wrap" Canvas.Top="10" Width="100"/>
+        </Canvas>
     </Grid>
 </Page>

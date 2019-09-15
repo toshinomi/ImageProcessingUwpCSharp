@@ -8,12 +8,27 @@ using Windows.Graphics.Imaging;
 
 class Binarization : ComImgProc
 {
+    private byte m_nThresh;
+
+    public byte Thresh
+    {
+        set { m_nThresh = value; }
+        get { return m_nThresh; }
+    }
+
     public Binarization()
     {
+        m_nThresh = 0;
     }
 
     public Binarization(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
+        m_nThresh = 0;
+    }
+
+    public Binarization(SoftwareBitmap _softwareBitmap, byte _nThresh) : base(_softwareBitmap)
+    {
+        m_nThresh = _nThresh;
     }
 
     ~Binarization()
@@ -67,7 +82,7 @@ class Binarization : ComImgProc
 
                             byte nGrayScale = (byte)((nPixelB + nPixelG + nPixelR) / 3);
 
-                            byte nBinarization = nGrayScale >= 125 ? (byte)255 : (byte)0;
+                            byte nBinarization = nGrayScale >= m_nThresh ? (byte)255 : (byte)0;
                             pData[nPixel + (int)ComInfo.Pixel.B] = nBinarization;
                             pData[nPixel + (int)ComInfo.Pixel.G] = nBinarization;
                             pData[nPixel + (int)ComInfo.Pixel.R] = nBinarization;
