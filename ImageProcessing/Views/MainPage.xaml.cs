@@ -26,12 +26,16 @@ namespace ImageProcessing.Views
         private StorageFile m_storageFile;
         private object m_imgProc;
         private CancellationTokenSource m_tokenSource;
+        private string m_strCurImgName;
 
         public MainPage()
         {
             InitializeComponent();
 
             InitMemberVariables();
+
+            m_strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+            sliderThresh.IsEnabled = m_strCurImgName == ComInfo.IMG_NAME_BINARIZATION ? true : false;
         }
 
         ~MainPage()
@@ -45,12 +49,21 @@ namespace ImageProcessing.Views
             m_strOpenFileName = "";
             m_storageFile = null;
             m_imgProc = null;
+            m_strCurImgName = "";
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
             SystemNavigationManager.GetForCurrentView().BackRequested += GoBack;
+            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+            if (m_strCurImgName != strCurImgName)
+            {
+                SelectLoadImage(strCurImgName);
+                pictureBoxAfter.Source = null;
+            }
+            sliderThresh.IsEnabled = strCurImgName == ComInfo.IMG_NAME_BINARIZATION ? true : false;
+
             base.OnNavigatedTo(e);
         }
 
@@ -120,16 +133,24 @@ namespace ImageProcessing.Views
         {
             pictureBoxAfter.Source = null;
 
+            btnFileSelect.IsEnabled = false;
+            btnAllClear.IsEnabled = false;
+            btnStart.IsEnabled = false;
+
             bool bLoadImageResult = await LoadImage();
             if (bLoadImageResult)
             {
                 bool bTaskResult = await TaskWorkImageProcessing();
                 if (bTaskResult)
                 {
-                    string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
-                    pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(SelectGetBitmap(strCurImgName));
+                    m_strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+                    pictureBoxAfter.Source = await ComFunc.ConvertToSoftwareBitmapSource(SelectGetBitmap(m_strCurImgName));
                 }
             }
+            btnFileSelect.IsEnabled = true;
+            btnAllClear.IsEnabled = true;
+            btnStart.IsEnabled = true;
+
             return;
         }
 
@@ -145,8 +166,8 @@ namespace ImageProcessing.Views
                 pictureBoxOriginal.Source = m_bitmap;
 
                 m_softwareBitmap = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
-                string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
-                SelectLoadImage(strCurImgName);
+                m_strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+                SelectLoadImage(m_strCurImgName);
             }
             catch (Exception)
             {
@@ -376,8 +397,8 @@ namespace ImageProcessing.Views
 
         public void OnSliderPreviewKeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
-            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
-            if (strCurImgName != ComInfo.IMG_NAME_BINARIZATION)
+            m_strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+            if (m_strCurImgName != ComInfo.IMG_NAME_BINARIZATION)
             {
                 return;
             }
@@ -390,8 +411,8 @@ namespace ImageProcessing.Views
 
         private void OnSliderKeyUp(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
         {
-            string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
-            if (strCurImgName != ComInfo.IMG_NAME_BINARIZATION)
+            m_strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
+            if (m_strCurImgName != ComInfo.IMG_NAME_BINARIZATION)
             {
                 return;
             }
