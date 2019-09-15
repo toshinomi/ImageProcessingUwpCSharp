@@ -218,6 +218,11 @@ namespace ImageProcessing.Views
 
         public async void OnClickBtnShowHistgram(object sender, RoutedEventArgs e)
         {
+            if (m_bitmap == null)
+            {
+                return;
+            }
+
             var navigateHistgramData = new ComNavigateHistgramData();
             if (m_bitmap != null)
             {
