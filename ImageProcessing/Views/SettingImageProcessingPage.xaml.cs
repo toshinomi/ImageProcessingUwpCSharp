@@ -71,10 +71,10 @@ namespace ImageProcessing.Views
                 cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeGrayScale2DiffName"));
                 cmbBoxImageProcessingType.Items.Add(settings.GetString("ImgTypeColorReversalName"));
 
-                ApplicationDataContainer container = ApplicationData.Current.LocalSettings;
-                if (container.Values.ContainsKey("ImgTypeSelectName"))
+                string strImgTypeSelectName = ComFunc.GetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME);
+                if (!string.IsNullOrWhiteSpace(strImgTypeSelectName))
                 {
-                    cmbBoxImageProcessingType.SelectedIndex = (int)items.Find(x => x.Name == container.Values["ImgTypeSelectName"].ToString())?.Id - 1;;
+                    cmbBoxImageProcessingType.SelectedIndex = (int)items.Find(x => x.Name == strImgTypeSelectName)?.Id - 1;
                 }
                 if (cmbBoxImageProcessingType.SelectedIndex == -1)
                 {
@@ -88,8 +88,7 @@ namespace ImageProcessing.Views
         public void SaveParam()
         {
             string strProcTypeName = (string)cmbBoxImageProcessingType.SelectedItem;
-            ApplicationDataContainer container = ApplicationData.Current.LocalSettings;
-            container.Values["ImgTypeSelectName"] = strProcTypeName;
+            ComFunc.SetStringApplicationDataContainer(ComInfo.CUR_IMG_NAME, strProcTypeName);
 
             return;
         }

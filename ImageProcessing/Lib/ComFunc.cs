@@ -75,4 +75,23 @@ public class ComFunc
 
         return bitmapSource;
     }
+
+    static public string GetStringApplicationDataContainer(string _strKey)
+    {
+        string strValue = "";
+
+        ApplicationDataContainer container = ApplicationData.Current.LocalSettings;
+        if (container.Values.ContainsKey(_strKey))
+        {
+            strValue = container.Values[_strKey].ToString();
+        }
+
+        return strValue;
+    }
+
+    static public void SetStringApplicationDataContainer(string _strKey, string _strValue)
+    {
+        ApplicationDataContainer container = ApplicationData.Current.LocalSettings;
+        container.Values[_strKey] = _strValue;
+    }
 }

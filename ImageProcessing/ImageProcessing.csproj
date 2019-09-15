@@ -126,6 +126,7 @@
     <Compile Include="ImgProc\GrayScale2Diff.cs" />
     <Compile Include="Lib\ComFunc.cs" />
     <Compile Include="Lib\ComImageProcessingType.cs" />
+    <Compile Include="Lib\ComImgInfo.cs" />
     <Compile Include="Lib\ComImgProc.cs" />
     <Compile Include="Lib\ComInfo.cs" />
     <Compile Include="Lib\ComNavigateHistgramData.cs" />
