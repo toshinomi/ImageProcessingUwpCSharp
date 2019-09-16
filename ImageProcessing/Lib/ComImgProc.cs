@@ -27,6 +27,12 @@ abstract public class ComImgProc
     {
     }
 
+    virtual public void Init()
+    {
+        m_softwareBitmap = null;
+        m_nStatus = (int)ComInfo.ImageProcStatus.NotImplemented;
+    }
+
     public SoftwareBitmap SoftwareBitmap
     {
         set { m_softwareBitmap = value; }

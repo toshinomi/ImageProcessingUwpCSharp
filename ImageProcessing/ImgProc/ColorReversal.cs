@@ -21,6 +21,11 @@ class ColorReversal : ComImgProc
         base.m_softwareBitmap = null;
     }
 
+    public override void Init()
+    {
+        base.Init();
+    }
+
     public override bool GoImgProc(CancellationToken _token)
     {
         bool bRst = true;
