@@ -36,6 +36,12 @@ public class ComImageProcessingType : ICloneable
     {
     }
 
+    public void Init()
+    {
+        m_nId = 0;
+        m_strName = "";
+    }
+
     public object Clone()
     {
         return (ComImageProcessingType)MemberwiseClone();

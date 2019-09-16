@@ -61,6 +61,16 @@ public class ComImgInfo
     ~ComImgInfo()
     {
     }
+
+    public void Init()
+    {
+        m_strCurImgName = "";
+        m_edgeDetectoinInfo = null;
+        m_grayScaleInfo = null;
+        m_binarizationInfo = null;
+        m_grayScale2DiffInfo = null;
+        m_colorReversalInfo = null;
+    }
 }
 
 public class ComEdgeDetectionInfo
@@ -100,6 +110,11 @@ public class ComBinarizationInfo
 
     ~ComBinarizationInfo()
     {
+    }
+
+    public void Init()
+    {
+        m_nThresh = 0;
     }
 }
 

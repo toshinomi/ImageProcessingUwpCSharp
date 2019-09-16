@@ -31,4 +31,10 @@ class ComNavigateHistgramData
     ~ComNavigateHistgramData()
     {
     }
+
+    public void Init()
+    {
+        m_bitmapOrigianl = null;
+        m_bitmapAfter = null;
+    }
 }
