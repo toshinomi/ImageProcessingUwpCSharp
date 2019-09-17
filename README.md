@@ -1,15 +1,15 @@
-# ŠT—v
-y ImageProcessing z  
-‰æ‘œˆ—‚ÌƒAƒ‹ƒSƒŠƒYƒ€ŠwK—p‚Éì¬‚µ‚½ UWP ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚Å‚·B  
+# æ¦‚è¦
+ã€ ImageProcessing ã€‘  
+ç”»åƒå‡¦ç†ã®ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ å­¦ç¿’ç”¨ã«ä½œæˆã—ãŸ UWP ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã§ã™ã€‚  
 
-ŠJ”­ŠÂ‹«FVisual Studio 2019  
-Œ¾ŒêFC#
+é–‹ç™ºç’°å¢ƒï¼šVisual Studio 2019  
+è¨€èªï¼šC#
 
-ƒƒCƒ“‰æ–Ê  
-![ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg](https://github.com/toshinomi/WPF_Sample/blob/master/ImageProcessing.png)
+ãƒ¡ã‚¤ãƒ³ç”»é¢  
+![ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆ](https://github.com/toshinomi/ImageProcessingUwpCSharp/blob/master/ImageProcessing.png)
 
-‰æ‘œˆ—İ’è‰æ–Ê  
-![ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg](https://github.com/toshinomi/WPF_Sample/blob/master/SettingImageProcessing.png)
+ç”»åƒå‡¦ç†è¨­å®šç”»é¢  
+![ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆ](https://github.com/toshinomi/ImageProcessingUwpCSharp/blob/master/SettingImageProcessing.png)
 
-ƒqƒXƒgƒOƒ‰ƒ€•\¦‰æ–Ê
-![ƒXƒNƒŠ[ƒ“ƒVƒ‡ƒbƒg](https://github.com/toshinomi/WPF_Sample/blob/master/HistgramLiveChart.png)
+ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ è¡¨ç¤ºç”»é¢
+![ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚·ãƒ§ãƒƒãƒˆ](https://github.com/toshinomi/ImageProcessingUwpCSharp/blob/master/HistgramLiveChart.png)
