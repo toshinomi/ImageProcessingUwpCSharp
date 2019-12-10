@@ -8,10 +8,6 @@ using Windows.Graphics.Imaging;
 
 class ColorReversal : ComImgProc
 {
-    public ColorReversal()
-    {
-    }
-
     public ColorReversal(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
     }

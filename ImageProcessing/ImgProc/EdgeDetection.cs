@@ -8,10 +8,6 @@ using Windows.Graphics.Imaging;
 
 class EdgeDetection : ComImgProc
 {
-    public EdgeDetection()
-    {
-    }
-
     public EdgeDetection(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
     }

@@ -8,10 +8,6 @@ using Windows.Graphics.Imaging;
 
 class GrayScale2Diff : ComImgProc
 {
-    public GrayScale2Diff()
-    {
-    }
-
     public GrayScale2Diff(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
     }

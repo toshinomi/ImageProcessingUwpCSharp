@@ -16,11 +16,6 @@ class Binarization : ComImgProc
         get { return m_nThresh; }
     }
 
-    public Binarization()
-    {
-        m_nThresh = 0;
-    }
-
     public Binarization(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
         m_nThresh = 0;

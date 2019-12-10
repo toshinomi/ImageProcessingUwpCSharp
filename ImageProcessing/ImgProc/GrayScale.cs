@@ -8,10 +8,6 @@ using Windows.Graphics.Imaging;
 
 public class GrayScale : ComImgProc
 {
-    public GrayScale() : base()
-    {
-    }
-
     public GrayScale(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
     }

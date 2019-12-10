@@ -25,15 +25,6 @@ abstract public class ComImgProc
     }
 
     /// <summary>
-    /// コンストラクタ
-    /// </summary>
-    public ComImgProc()
-    {
-        m_softwareBitmap = null;
-        m_nStatus = (int)ComInfo.ImageProcStatus.NotImplemented;
-    }
-
-    /// <summary>
     /// デスクトラクタ
     /// </summary>
     ~ComImgProc()
