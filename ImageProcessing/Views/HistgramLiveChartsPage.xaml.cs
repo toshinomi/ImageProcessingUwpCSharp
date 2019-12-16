@@ -22,7 +22,7 @@ using Windows.UI.Xaml.Navigation;
 namespace ImageProcessing.Views
 {
     /// <summary>
-    /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
+    /// ヒストグラムのページ
     /// </summary>
     public sealed partial class HistgramLiveChartsPage : Page
     {
@@ -31,15 +31,25 @@ namespace ImageProcessing.Views
         private SoftwareBitmap m_softwareBitmapOriginal;
         private SoftwareBitmap m_softwareBitmapAfter;
 
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public HistgramLiveChartsPage()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// デスクトラクタ
+        /// </summary>
         ~HistgramLiveChartsPage()
         {
         }
 
+        /// <summary>
+        /// ページの遷移イベント
+        /// </summary>
+        /// <param name="e">ナビゲーションのイベント</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ComHistgramData param = (ComHistgramData)e.Parameter;
@@ -52,6 +62,11 @@ namespace ImageProcessing.Views
             DrawHistgram();
         }
 
+        /// <summary>
+        /// ページの遷移(戻る)
+        /// </summary>
+        /// <param name="obj">オブジェクト</param>
+        /// <param name="e">バックリクエストのイベント</param>
         public void GoBack(object obj, BackRequestedEventArgs e)
         {
             if (Frame.CanGoBack)
@@ -64,6 +79,9 @@ namespace ImageProcessing.Views
             }
         }
 
+        /// <summary>
+        /// ヒストグラムの表示
+        /// </summary>
         public void DrawHistgram()
         {
             InitHistgram();
@@ -113,6 +131,11 @@ namespace ImageProcessing.Views
             LiveChartsGraph.Series = m_seriesCollection;
         }
 
+        /// <summary>
+        /// ヒストグラムの表示
+        /// </summary>
+        /// <param name="_softwareBitmap">ソフトウェアビットマップ</param>
+        /// <param name="_nIndex">インデックス</param>
         public void CalHistgram(SoftwareBitmap _softwareBitmap, int _nIndex)
         {
             int nIdxWidth;
@@ -150,6 +173,9 @@ namespace ImageProcessing.Views
             }
         }
 
+        /// <summary>
+        /// ヒストグラムの初期化
+        /// </summary>
         public void InitHistgram()
         {
             for (int nIdx = 0; nIdx < (m_nHistgram.Length >> 1); nIdx++)

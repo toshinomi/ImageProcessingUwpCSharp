@@ -20,10 +20,13 @@ using Windows.UI.Xaml.Navigation;
 namespace ImageProcessing.Views
 {
     /// <summary>
-    /// それ自体で使用できる空白ページまたはフレーム内に移動できる空白ページ。
+    /// 画像処理の設定ページ
     /// </summary>
     public sealed partial class SettingImageProcessingPage : Page
     {
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public SettingImageProcessingPage()
         {
             InitializeComponent();
@@ -31,10 +34,17 @@ namespace ImageProcessing.Views
             LoadParam();
         }
 
+        /// <summary>
+        /// デスクトラクタ
+        /// </summary>
         ~SettingImageProcessingPage()
         {
         }
 
+        /// <summary>
+        /// ページの遷移イベント
+        /// </summary>
+        /// <param name="e">ナビゲーションのイベント</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
@@ -42,6 +52,11 @@ namespace ImageProcessing.Views
             base.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// ページの遷移(戻る)
+        /// </summary>
+        /// <param name="obj">オブジェクト</param>
+        /// <param name="e">バックリクエストのイベント</param>
         public void GoBack(object obj, BackRequestedEventArgs e)
         {
             if (Frame.CanGoBack)
@@ -54,6 +69,9 @@ namespace ImageProcessing.Views
             }
         }
 
+        /// <summary>
+        /// 設定の読込
+        /// </summary>
         public void LoadParam()
         {
             var settings = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView(ComInfo.RESOURCE_IMG_PROC_TYPE);
@@ -85,6 +103,9 @@ namespace ImageProcessing.Views
             return;
         }
 
+        /// <summary>
+        /// 設定の保存
+        /// </summary>
         public void SaveParam()
         {
             string strProcTypeName = (string)cmbBoxImageProcessingType.SelectedItem;
