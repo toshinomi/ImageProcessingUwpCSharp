@@ -42,7 +42,7 @@ namespace ImageProcessing.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ComNavigateHistgramData param = (ComNavigateHistgramData)e.Parameter;
+            ComHistgramData param = (ComHistgramData)e.Parameter;
             m_softwareBitmapOriginal = param.SoftwareBitmapOriginal;
             m_softwareBitmapAfter = param.SoftwareBitmapAfter;
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;

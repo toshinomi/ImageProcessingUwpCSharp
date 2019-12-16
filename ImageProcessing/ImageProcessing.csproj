@@ -129,7 +129,7 @@
     <Compile Include="Lib\ComImgInfo.cs" />
     <Compile Include="Lib\ComImgProc.cs" />
     <Compile Include="Lib\ComInfo.cs" />
-    <Compile Include="Lib\ComNavigateHistgramData.cs" />
+    <Compile Include="Lib\ComHistgramData.cs" />
     <Compile Include="Lib\IMemoryBufferByteAccess.cs" />
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Activation\DefaultActivationHandler.cs" />

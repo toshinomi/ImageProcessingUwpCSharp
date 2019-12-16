@@ -5,33 +5,51 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 
-class ComNavigateHistgramData
+/// <summary>
+/// ヒストグラムデータ
+/// </summary>
+class ComHistgramData
 {
     private SoftwareBitmap m_bitmapOrigianl;
     private SoftwareBitmap m_bitmapAfter;
 
+    /// <summary>
+    /// オリジナルのビットマップ
+    /// </summary>
     public SoftwareBitmap SoftwareBitmapOriginal
     {
         set { m_bitmapOrigianl = value; }
         get { return m_bitmapOrigianl; }
     }
 
+    /// <summary>
+    /// 画像処理後のビットマップ
+    /// </summary>
     public SoftwareBitmap SoftwareBitmapAfter
     {
         set { m_bitmapAfter = value; }
         get { return m_bitmapAfter; }
     }
 
-    public ComNavigateHistgramData()
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    public ComHistgramData()
     {
         m_bitmapOrigianl = null;
         m_bitmapAfter = null;
     }
 
-    ~ComNavigateHistgramData()
+    /// <summary>
+    /// デスクトラクタ
+    /// </summary>
+    ~ComHistgramData()
     {
     }
 
+    /// <summary>
+    /// 初期化
+    /// </summary>
     public void Init()
     {
         m_bitmapOrigianl = null;

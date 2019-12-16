@@ -244,19 +244,19 @@ namespace ImageProcessing.Views
                 return;
             }
 
-            var navigateHistgramData = new ComNavigateHistgramData();
+            var histgramData = new ComHistgramData();
             if (m_bitmap != null)
             {
-                navigateHistgramData.SoftwareBitmapOriginal = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
+                histgramData.SoftwareBitmapOriginal = await ComFunc.CreateSoftwareBitmap(m_storageFile, m_bitmap);
             }
             string strCurImgName = ComFunc.GetStringApplicationDataContainer(ComInfo.IMG_TYPE_SELECT_NAME);
             if (SelectGetStatus(strCurImgName) == (int)ComInfo.ImageProcStatus.Implemented)
             {
-                navigateHistgramData.SoftwareBitmapAfter = SelectGetBitmap(strCurImgName);
+                histgramData.SoftwareBitmapAfter = SelectGetBitmap(strCurImgName);
             }
             if (m_bitmap != null)
             {
-                Frame.Navigate(typeof(HistgramLiveChartsPage), navigateHistgramData);
+                Frame.Navigate(typeof(HistgramLiveChartsPage), histgramData);
             }
         }
 
