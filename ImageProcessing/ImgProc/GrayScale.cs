@@ -6,22 +6,40 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 
+/// <summary>
+/// グレースケールのロジック
+/// </summary>
 public class GrayScale : ComImgProc
 {
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="_bitmap">ビットマップ</param>
     public GrayScale(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
     }
 
+    /// <summary>
+    /// デスクトラクタ
+    /// </summary>
     ~GrayScale()
     {
         base.m_softwareBitmap = null;
     }
 
+    /// <summary>
+    /// 初期化
+    /// </summary>
     public override void Init()
     {
         base.Init();
     }
 
+    /// <summary>
+    /// グレースケールの実行
+    /// </summary>
+    /// <param name="_token">キャンセルトークン</param>
+    /// <returns>実行結果 成功/失敗</returns>
     public override bool GoImgProc(CancellationToken _token)
     {
         bool bRst = true;
