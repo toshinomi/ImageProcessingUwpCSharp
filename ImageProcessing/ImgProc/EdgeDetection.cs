@@ -6,22 +6,40 @@ using System.Threading;
 using System.Threading.Tasks;
 using Windows.Graphics.Imaging;
 
+/// <summary>
+/// エッジ検出のロジック
+/// </summary>
 class EdgeDetection : ComImgProc
 {
+    /// <summary>
+    /// コンストラクタ
+    /// </summary>
+    /// <param name="_bitmap">ビットマップ</param>
     public EdgeDetection(SoftwareBitmap _softwareBitmap) : base(_softwareBitmap)
     {
     }
 
+    /// <summary>
+    /// デスクトラクタ
+    /// </summary>
     ~EdgeDetection()
     {
         base.m_softwareBitmap = null;
     }
 
+    /// <summary>
+    /// 初期化
+    /// </summary>
     public override void Init()
     {
         base.Init();
     }
 
+    /// <summary>
+    /// エッジ検出の実行
+    /// </summary>
+    /// <param name="_token">キャンセルトークン</param>
+    /// <returns>実行結果 成功/失敗</returns>
     public override bool GoImgProc(CancellationToken _token)
     {
         bool bRst = true;
